@@ -1,11 +1,4 @@
 # -*- coding: utf-8 -*-
-"""
-Created on Sun Jun  3 21:55:46 2018
-
-@author: C257458
-"""
-
-# -*- coding: utf-8 -*-
 import dash
 import dash_core_components as dcc
 import dash_html_components as html
