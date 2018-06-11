@@ -78,4 +78,10 @@ A histogram displays an accurate representation og the overall distribution of a
 ### Distribution plot
 Histogram + rug plot + kernel density estimate
 
+[Eg. 1](Code/Dist_Chart_eg_1.ipynb)           |  [Eg. 2](Code/Dist_Chart_eg_2.ipynb)  
+:-------------------------:|:-------------------------:
+<img src="image/Dist_Chart_eg_1.png" height="250">   |  <img src="image/Dist_Chart_eg_2.png" height="250"> 
 
+[Eg. 3](Code/Dist_Chart_eg_3.ipynb)            |  
+:-------------------------:|
+<img src="image/Dist_Chart_eg_3.png" height="250">   | 
