@@ -42,7 +42,7 @@ Present categorical data with rectangular bars with heights (or lengths) proport
 
 
 
-### **Bubble chart**
+### **Bubble chart**:
 Bubble charts are very similar to scatter plots, except we now convey a third variabls's information through the size of the markers.
 
 [Eg. 1](Code/Bubble_Chart_eg_1.ipynb)           |  [Eg. 2](Code/Bubble_Chart_eg_2.ipynb)  
@@ -64,4 +64,6 @@ Box ploy visualize the variation of a feature by depicting the continous numeric
 :-------------------------:|
 <img src="image/Box_Chart_eg_3.png" height="250">   | 
 
+### Histogram:
+A histogram displays an accurate representation og the overall distribution of a continuous feature.
 
