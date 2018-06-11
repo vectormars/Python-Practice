@@ -89,3 +89,7 @@ Histogram + rug plot + kernel density estimate
 ### Heatmap
 
 Heatmaps allow the visualization of 3 features. Categorical or continuous features along the x and y axis to make up a grid, and then a 3rd continuous feature displayed through the color.
+
+[Eg. 1](Code/Heatmap_Chart_eg_1.ipynb)           |  [Eg. 2](Code/Heatmap_Chart_eg_2.ipynb)  
+:-------------------------:|:-------------------------:
+<img src="image/Heatmap_Chart_eg_1.png" height="250">   |  <img src="image/Heatmap_Chart_eg_2.png" height="250"> 
