@@ -85,3 +85,7 @@ Histogram + rug plot + kernel density estimate
 [Eg. 3](Code/Dist_Chart_eg_3.ipynb)            |  
 :-------------------------:|
 <img src="image/Dist_Chart_eg_3.png" height="250">   | 
+
+### Heatmap
+
+Heatmaps allow the visualization of 3 features. Categorical or continuous features along the x and y axis to make up a grid, and then a 3rd continuous feature displayed through the color.
