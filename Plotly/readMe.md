@@ -27,4 +27,20 @@ Often used to visualize a trend in data over intervals of time - known as a time
 
 
 ### **Bar chart**: 
-Present categorical data with rectangular bars with heights (or lengths) proportional to the values that they represent.    
+Present categorical data with rectangular bars with heights (or lengths) proportional to the values that they represent.  
+
+[Eg. 1](Code/Bar_Chart_eg_1.ipynb)           |  [Eg. 2](Code/Bar_Chart_eg_2.ipynb)  
+:-------------------------:|:-------------------------:
+<img src="image/Bar_Chart_eg_1.png" height="250">   |  <img src="image/Bar_Chart_eg_2.png" height="250"> 
+
+[Eg. 3](Code/Bar_Chart_eg_3.ipynb)            |  
+:-------------------------:|
+<img src="image/Bar_Chart_eg_3.png" height="250">   | 
+
+[Eg. 4](Code/Bar_Chart_eg_4.ipynb)           |  [Eg. 5 (horizontal)](Code/Bar_Chart_eg_5.ipynb)  
+:-------------------------:|:-------------------------:
+<img src="image/Bar_Chart_eg_4.png" height="250">   |  <img src="image/Bar_Chart_eg_5.png" height="250"> 
+
+
+
+
