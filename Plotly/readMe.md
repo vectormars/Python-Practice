@@ -24,8 +24,6 @@ Often used to visualize a trend in data over intervals of time - known as a time
 :-------------------------:|:-------------------------:
 <img src="image/Line_Chart_eg_4.png" height="250">   |  <img src="image/Line_Chart_eg_5.png" height="250"> 
 
-
-
 ### **Bar chart**: 
 Present categorical data with rectangular bars with heights (or lengths) proportional to the values that they represent.  
 
@@ -40,6 +38,9 @@ Present categorical data with rectangular bars with heights (or lengths) proport
 [Eg. 4](Code/Bar_Chart_eg_4.ipynb)           |  [Eg. 5 (horizontal)](Code/Bar_Chart_eg_5.ipynb)  
 :-------------------------:|:-------------------------:
 <img src="image/Bar_Chart_eg_4.png" height="250">   |  <img src="image/Bar_Chart_eg_5.png" height="250"> 
+
+### **Bubble chart**
+Bubble charts are very similar to scatter plots, except we now convey a third variabls's information through the size of the markers.
 
 
 
