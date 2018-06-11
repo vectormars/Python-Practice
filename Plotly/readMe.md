@@ -56,5 +56,12 @@ Bubble charts are very similar to scatter plots, except we now convey a third va
 ### Box Plot
 Box ploy visualize the variation of a feature by depicting the continous numerical data through quartiles.
 
+[Eg. 1](Code/Box_Chart_eg_1.ipynb)           |  [Eg. 2](Code/Box_Chart_eg_2.ipynb)  
+:-------------------------:|:-------------------------:
+<img src="image/Box_Chart_eg_1.png" height="250">   |  <img src="image/Box_Chart_eg_2.png" height="250"> 
+
+[Eg. 3](Code/Box_Chart_eg_3.ipynb)            |  
+:-------------------------:|
+<img src="image/Box_Chart_eg_3.png" height="250">   | 
 
 
