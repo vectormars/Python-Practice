@@ -74,3 +74,8 @@ A histogram displays an accurate representation og the overall distribution of a
 [Eg. 3](Code/Histogram_Chart_eg_3.ipynb)           |  [Eg. 4](Code/Histogram_Chart_eg_4.ipynb)  
 :-------------------------:|:-------------------------:
 <img src="image/Histogram_Chart_eg_3.png" height="250">   |  <img src="image/Histogram_Chart_eg_4.png" height="250"> 
+
+### Distribution plot
+Histogram + rug plot + kernel density estimate
+
+
