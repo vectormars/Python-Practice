@@ -39,9 +39,22 @@ Present categorical data with rectangular bars with heights (or lengths) proport
 :-------------------------:|:-------------------------:
 <img src="image/Bar_Chart_eg_4.png" height="250">   |  <img src="image/Bar_Chart_eg_5.png" height="250"> 
 
+
+
+
 ### **Bubble chart**
 Bubble charts are very similar to scatter plots, except we now convey a third variabls's information through the size of the markers.
 
+[Eg. 1](Code/Bubble_Chart_eg_1.ipynb)           |  [Eg. 2](Code/Bubble_Chart_eg_2.ipynb)  
+:-------------------------:|:-------------------------:
+<img src="image/Bubble_Chart_eg_1.png" height="250">   |  <img src="image/Bubble_Chart_eg_2.png" height="250"> 
+
+[Eg. 3](Code/Bubble_Chart_eg_3.ipynb)            |  
+:-------------------------:|
+<img src="image/Bubble_Chart_eg_3.png" height="250">   | 
+
+### Box Plot
+Box ploy visualize the variation of a feature by depicting the continous numerical data through quartiles.
 
 
 
