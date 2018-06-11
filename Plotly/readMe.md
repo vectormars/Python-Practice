@@ -67,3 +67,10 @@ Box ploy visualize the variation of a feature by depicting the continous numeric
 ### Histogram:
 A histogram displays an accurate representation og the overall distribution of a continuous feature.
 
+[Eg. 1](Code/Histogram_Chart_eg_1.ipynb)           |  [Eg. 2](Code/Histogram_Chart_eg_2.ipynb)  
+:-------------------------:|:-------------------------:
+<img src="image/Histogram_Chart_eg_1.png" height="250">   |  <img src="image/Histogram_Chart_eg_2.png" height="250"> 
+
+[Eg. 3](Code/Histogram_Chart_eg_3.ipynb)           |  [Eg. 4](Code/Histogram_Chart_eg_4.ipynb)  
+:-------------------------:|:-------------------------:
+<img src="image/Histogram_Chart_eg_3.png" height="250">   |  <img src="image/Histogram_Chart_eg_4.png" height="250"> 
