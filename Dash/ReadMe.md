@@ -11,6 +11,7 @@ Dcc components descirbe the individual graphs themselves
 * CSS allows for styling HTML elements
   * Fonts, Colors, Boarders, ets
   * Dash uses dictonaries to pass in CSS style calls     
+  
 [Eg](Code/HTMLComponents.py)
 
 #### [Dash Core Components](https://dash.plot.ly/dash-core-components)
