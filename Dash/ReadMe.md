@@ -19,4 +19,5 @@ Dash Core Components are most abstract (higher level) calls that allow you to qu
 [Eg](Code/CoreComponents.py)
 
 #### Markdown with Dash
-Dashboards can also display markdown text which allows for links, italics, bold text, bullet lists, and more.
+Dashboards can also display markdown text which allows for links, italics, bold text, bullet lists, and more.      
+[Eg](Code/markdown.py)
