@@ -17,3 +17,6 @@ Dcc components descirbe the individual graphs themselves
 #### [Dash Core Components](https://dash.plot.ly/dash-core-components)
 Dash Core Components are most abstract (higher level) calls that allow you to quickly insert common components into your dash board.     
 [Eg](Code/CoreComponents.py)
+
+#### Markdown with Dash
+Dashboards can also display markdown text which allows for links, italics, bold text, bullet lists, and more.
