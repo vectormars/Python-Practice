@@ -5,9 +5,14 @@ Html components describe the layout of the page
 * dash_core_components
 Dcc components descirbe the individual graphs themselves
 
-#### HTML component
+#### HTML Component
 * An html Div element is a division 
   * Section or block of the web app (dashboard)
 * CSS allows for styling HTML elements
   * Fonts, Colors, Boarders, ets
-  * Dash uses dictonaries to pass in CSS style calls
+  * Dash uses dictonaries to pass in CSS style calls     
+[Eg](Code/HTMLComponents.py)
+
+#### [Dash Core Components](https://dash.plot.ly/dash-core-components)
+Dash Core Components are most abstract (higher level) calls that allow you to quickly insert common components into your dash board.     
+[Eg](Code/CoreComponents.py)
