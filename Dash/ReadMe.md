@@ -41,3 +41,10 @@ Multiple input:
 
 Multiple output:         
 [Eg. 5](Code/callback5.py), [Eg. 6](Code/callback6.py), [Eg. 7](Code/callback7.py)
+
+Callback with state:
+[Eg. 1](Code/callback_state_01.py), [Eg. 2](Code/callback_state_02.py)
+
+
+
+
