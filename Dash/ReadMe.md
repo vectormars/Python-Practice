@@ -31,13 +31,13 @@ Steps to create a callback for interactions
 * Connect the desired properties
 
 Basic callback:     
-[Eg 1.](Code/callback1.py), [Eg 2.](Code/callback2.py)
+[Eg. 1](Code/callback1.py), [Eg. 2](Code/callback2.py)
 
 Multiple input:     
 
-[Eg 3.](Code/callback3.py)            |  [Eg 4.](Code/callback4.py)
+[Eg. 3](Code/callback3.py)            |  [Eg. 4](Code/callback4.py)
 :-------------------------:|:-------------------------:
 <img src="images/callback3.png" height="250">   |  <img src="images/callback4.png" height="250"> 
 
 Multiple output:         
-[Eg 5.](Code/callback5.py), [Eg 6.](Code/callback6.py)
+[Eg. 5](Code/callback5.py), [Eg. 6](Code/callback6.py), [Eg. 7](Code/callback7.py)
