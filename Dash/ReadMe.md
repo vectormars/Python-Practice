@@ -39,3 +39,5 @@ Multiple input:
 :-------------------------:|:-------------------------:
 <img src="images/callback3.png" height="250">   |  <img src="images/callback4.png" height="250"> 
 
+Multiple output:         
+[Eg 5.](Code/callback5.py), [Eg 6.](Code/callback6.py)
