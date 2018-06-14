@@ -35,7 +35,7 @@ Basic callback:
 
 Multiple input:     
 
-[Eg 3.](Code/callback3.py)            |  [Eg 4.](Code/callback3.py)
+[Eg 3.](Code/callback3.py)            |  [Eg 4.](Code/callback4.py)
 :-------------------------:|:-------------------------:
 <img src="images/callback3.png" height="250">   |  <img src="images/callback4.png" height="250"> 
 
