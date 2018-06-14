@@ -29,3 +29,5 @@ Steps to create a callback for interactions
   * Set an Output to a component id
   * Set an Input to a component id
 * Connect the desired properties
+
+[Eg 1.](Code/callback1.py), [Eg 2.](Code/callback2.py), [Eg 3.](Code/callback3.py)
