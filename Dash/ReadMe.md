@@ -22,7 +22,7 @@ Dash Core Components are most abstract (higher level) calls that allow you to qu
 Dashboards can also display markdown text which allows for links, italics, bold text, bullet lists, and more.      
 [Eg](Code/markdown.py)
 
-## Callback
+## 3. Callback
 Steps to create a callback for interactions
 * Create a function to return some desired output
 * Decorate that function with an **@app.callback** decorator
@@ -45,6 +45,9 @@ Multiple output:
 Callback with state:
 [Eg. 1](Code/callback_state_01.py), [Eg. 2](Code/callback_state_02.py)
 
-
+## 4. Interactive
+**Hover data** [Eg. 1](Code/hover1.py), [Eg. 2](Code/hover2.py)       
+**Click data** [Eg.](Code/ClickData.py)
+**Update Graph**
 
 
