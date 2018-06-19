@@ -12,7 +12,7 @@ Depending on the trend of the scatter points, we could interpret a correlation.
 ### **Line chart**: 
 Often used to visualize a trend in data over intervals of time - known as a time series  
 
-[Eg. 1](Code/Plotly_Scatter_eg_1.ipynb)            |  
+[Eg. 1](Code/Line_Chart_eg_1.ipynb)            |  
 :-------------------------:|
 <img src="image/Line_Chart_eg_1.png" height="250">   | 
 
