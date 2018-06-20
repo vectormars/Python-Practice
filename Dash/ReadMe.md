@@ -40,7 +40,16 @@ Multiple input:
 <img src="images/callback3.png" height="250">   |  <img src="images/callback4.png" height="250"> 
 
 Multiple output:
-[Eg. 5](Code/callback5.py), [Eg. 6](Code/callback6.py), [Eg. 7](Code/callback7.py)
+
+[Eg. 5](Code/callback5.py)            |  [Eg. 6](Code/callback6.py)
+:-------------------------:|:-------------------------:
+<img src="images/callback5.png" height="250">   |  <img src="images/callback6.png" height="250"> 
+
+[Eg. 7](Code/callback7.py)            |  
+:-------------------------:|
+<img src="images/callback7.png" height="50">   |  
+
+
 
 Callback with state:
 [Eg. 1](Code/callback_state_01.py), [Eg. 2](Code/callback_state_02.py)
