@@ -3,6 +3,7 @@ import dash_core_components as dcc
 import dash
 
 import plotly
+import plotly.graph_objs as go
 import dash_table_experiments as dte
 from dash.dependencies import Input, Output
 
@@ -56,7 +57,10 @@ app.layout = html.Div([
     html.Div([
         html.H5("Down-sampled data"),
         html.Div(dte.DataTable(rows=[{}], id='table-ds'))
-        ])
+        ]),
+    
+    html.Br(),
+    dcc.Graph(id='graph-1')
            
 ])
 
@@ -99,7 +103,7 @@ def update_output_1(contents, filename):
         return [{}]
 
 
-
+# Define downSample function
 def downSample(data):
     data['round t'] = data['t'].apply(round, ndigits=0)
     data = data.groupby('round t').mean().reset_index()
@@ -107,7 +111,7 @@ def downSample(data):
     
     return data
 
-
+# callback Storing Data in the Browser with a Hidden Div
 @app.callback(Output('intermediate-value', 'children'),
               [Input('upload-data', 'contents'),
                Input('upload-data', 'filename')])
@@ -119,7 +123,6 @@ def clean_data(contents, filename):
             return df.to_json(date_format='iso', orient='split')
 
 
-
 # callback table creation (downsampled data)
 @app.callback(Output('table-ds', 'rows'), [Input('intermediate-value', 'children')])
 def update_table(jsonified_cleaned_data):
@@ -129,6 +132,38 @@ def update_table(jsonified_cleaned_data):
     else:
         return [{}]
 
+# callback figure creation (downsampled data explore)
+@app.callback(Output('graph-1', 'figure'),[Input('intermediate-value', 'children')])
+def update_graph_1(jsonified_cleaned_data):
+    dff = pd.read_json(jsonified_cleaned_data, orient='split')
+    if dff is not None:
+        traces = []
+        traces.append(go.Scatter(
+            x = dff['round t'],
+            y = dff['Sensor'],
+            mode = 'markers',
+            marker={'size': 2.5},
+            name = 'Capacitance sensor')
+            )
+        traces.append(go.Scatter(
+            x = dff['round t'],
+            y = dff['Ref'],
+            mode = 'markers',
+            marker={'size': 2.5},
+            name = 'Reference sensor')
+            )
+    
+        return{
+            'data': traces,
+            'layout': go.Layout(
+                title = 'Sensor Measurement vs. Time',
+                xaxis = dict(title = 'Time (s)'),
+                yaxis = dict(title = 'pF')  
+            )
+        }
+
+    
+    
 
 app.css.append_css({
     "external_url": "https://codepen.io/chriddyp/pen/bWLwgP.css"
