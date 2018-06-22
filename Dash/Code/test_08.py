@@ -50,7 +50,14 @@ app.layout = html.Div([
     html.Div([
         html.H5("Experimental data"),
         html.Div(dte.DataTable(rows=[{}], id='table'))
+        ]),
+    
+    html.Br(),
+    html.Div([
+        html.H5("Down-sampled data"),
+        html.Div(dte.DataTable(rows=[{}], id='table-ds'))
         ])
+           
 ])
 
 
@@ -113,8 +120,31 @@ def clean_data(contents, filename):
 
 
 
-        
+# callback table creation (downsampled data)
+@app.callback(Output('table_ds', 'rows'),
+              [Input('upload-data', 'contents'),
+               Input('upload-data', 'filename')])
+def update_output_2(contents, filename):
+    if contents is not None:
+        df = parse_contents(contents, filename)
+        if df is not None:
+            df['round t'] = df['t'].apply(round, ndigits=0)
+            df = df.groupby('round t').mean().reset_index()
+            df = df.drop('t', axis=1)
+            return df.to_dict('records')
+        else:
+            return [{}]
+    else:
+        return [{}]        
 
+
+@app.callback(Output('table-ds', 'rows'), [Input('intermediate-value', 'children')])
+def update_table(jsonified_cleaned_data):
+    dff = pd.read_json(jsonified_cleaned_data, orient='split')
+    if dff is not None:
+        return dff.to_dict('records')
+    else:
+        return [{}]
 
 
 app.css.append_css({
