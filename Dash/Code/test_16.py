@@ -32,6 +32,18 @@ df_base = df_base.groupby('round t').mean().reset_index()
 df_base_Spline = df_base.groupby('Volume').mean().reset_index().sort_values(by=['Volume'])
 spl = UnivariateSpline(df_base_Spline['Volume'], df_base_Spline['Sensor'])
 spl.set_smoothing_factor(0.34)
+# Noise remove
+def noiseRemoval(data):
+    ref_max = 0.9000520706176756
+    ref_min = 0.7775897979736323
+    sense_max = 0.7217592511504041
+    sense_min = -0.00010679833326410204
+    k = 0.55880274
+    
+    data['Sensor Dis'] = data['Sensor'] - spl(data['Volume'])
+    data['Ref_MinMax'] =  (data['Ref'] - ref_min) / (ref_max - ref_min)
+    adjust = (data['Ref_MinMax']*k)*(sense_max - sense_min) + sense_min
+    return data['Sensor'] - adjust
 
 
 
@@ -76,7 +88,7 @@ app.layout = html.Div([
     
     html.Br(),
     html.Div([
-        html.H5("Down-sampled data"),
+        html.H5("Down-Sampled data"),
         html.Div(dte.DataTable(rows=[{}], id='table-ds'))
         ]),
     
@@ -88,6 +100,11 @@ app.layout = html.Div([
     html.Br(),
     html.Div([
         dcc.Graph(id='graph-2')
+        ]),
+    
+    html.Br(),
+    html.Div([
+        dcc.Graph(id='graph-3')
         ])
            
 ])
@@ -217,7 +234,7 @@ def update_graph_2(n_clicks, jsonified_cleaned_data):
             x = df_base['Volume'],
             y = df_base['Sensor'],
             mode = 'markers',
-            name = 'Noise data',
+            name = 'No noise data',
             marker={'size': 3}
             )
         )
@@ -243,8 +260,63 @@ def update_graph_2(n_clicks, jsonified_cleaned_data):
     else:
         return {'data': []}    
         
-# Noise remove
 
+# callback figure creation (Noise removal data)
+@app.callback(Output('graph-3', 'figure'), [Input('submit-button', 'n_clicks')], [State('intermediate-value', 'children')])
+def update_graph_2(n_clicks, jsonified_cleaned_data):
+    if jsonified_cleaned_data is not None:
+        dff = pd.read_json(jsonified_cleaned_data, orient='split')        
+        df = pd.DataFrame(columns=['text1','text2'])
+        df['text1']=pd.Series(dff['Sensor'].round(2),dtype=str)
+        df['text2']=pd.Series(dff['Volume'].round(2),dtype=str)+"uL, "+df['text1']+"pF"
+        traces = []
+        traces.append(go.Scatter(
+            x = dff['Volume'],
+            y = dff['Sensor'],
+            hoverinfo = "text",
+            text = df['text2'],
+            mode = 'markers',
+            name = 'Noisy data',
+            marker={'size': 3}
+            )
+        )
+        traces.append(go.Scatter(
+            x = df_base['Volume'],
+            y = df_base['Sensor'],
+            mode = 'markers',
+            name = 'No noise data',
+            marker={'size': 3}
+            )
+        )
+        traces.append(go.Scatter(
+            x = df_base['Volume'],
+            y = spl(df_base['Volume']),
+            name = 'Actual value (Spline)',
+            line = dict(
+                color = ('rgb(0, 0, 0)'),
+                width = 2,
+                dash='dash')
+            )
+        )
+        traces.append(go.Scatter(
+            x = dff['Volume'],
+            y = noiseRemoval(dff),
+            mode = 'markers',
+            name = 'Noise reduced data',
+            marker={'size': 3}
+            )
+        )
+
+        return{
+            'data': traces,
+            'layout': go.Layout(
+                title = 'Noise Reduction Comparison',
+                xaxis = dict(title = 'Volume in reservior (uL)'),
+                yaxis = dict(title = 'Capacitance (pF)')  
+            )
+        }
+    else:
+        return {'data': []}    
         
         
         
