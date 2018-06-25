@@ -263,7 +263,7 @@ def update_graph_2(n_clicks, jsonified_cleaned_data):
 
 # callback figure creation (Noise removal data)
 @app.callback(Output('graph-3', 'figure'), [Input('submit-button', 'n_clicks')], [State('intermediate-value', 'children')])
-def update_graph_2(n_clicks, jsonified_cleaned_data):
+def update_graph_3(n_clicks, jsonified_cleaned_data):
     if jsonified_cleaned_data is not None:
         dff = pd.read_json(jsonified_cleaned_data, orient='split')        
         df = pd.DataFrame(columns=['text1','text2'])
