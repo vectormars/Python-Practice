@@ -359,10 +359,28 @@ def update_graph_3(n_clicks, jsonified_cleaned_data):
 def update_graph_4(n_clicks, jsonified_cleaned_data):
     if jsonified_cleaned_data is not None:
         dff = pd.read_json(jsonified_cleaned_data, orient='split')   
+        dff_1 = dff.copy()
+        pf_Obs = [find_Obs(dff_1, x) for x in Volume_True]
         
         traces = []
+        traces.append(go.Scatter(
+            x = dff['Volume'],
+            y = dff['Sensor'],
+            mode = 'markers',
+            name = 'Observed value',
+            marker={'size': 3}
+            )
+        )
 
-        
+        traces.append(go.Scatter(
+            x = Volume_True,
+            y = pf_Obs,
+            mode = 'markers',
+            name = 'Observed value (Sample)',
+            marker={'size': 10, 'color':('rgb(70, 130, 180)')}
+            )
+        )
+
         traces.append(go.Scatter(
             x = Volume_True,
             y = pf_True,
