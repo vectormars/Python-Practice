@@ -7,3 +7,5 @@ pip.main(['install','plotly'])
 
 pip.main(['install', '--upgrade','plotly'])
 pip.main(['install', '--upgrade','pip'])
+
+! python -m pip install xlrd
