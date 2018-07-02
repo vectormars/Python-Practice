@@ -57,8 +57,8 @@ def noise_removal_sample(obs, ref):
     sense_min = -0.00010679833326410204
     k = 0.55880274
 
-    ref_minmax = (ref - ref_min) / (ref_max - ref_min)
-    adjust = (ref_minmax * k) * (sense_max - sense_min) + sense_min
+    ref_min_max = (ref - ref_min) / (ref_max - ref_min)
+    adjust = (ref_min_max * k) * (sense_max - sense_min) + sense_min
 
     return obs - adjust
 
@@ -81,6 +81,11 @@ def find_ref(data, value):
     # Find ref
     idx = (np.abs(data['Volume'] - value)).idxmin()
     return data['Ref'][idx]
+
+
+def find_volume(pf):
+    idx = (np.abs(LookUp_pf-pf)).argmin()
+    return LookUp_Volume[idx]
 
 
 # Kalman filter
@@ -128,7 +133,7 @@ app.layout = html.Div([
             'margin': '10px'
         },
         multiple=False),
-    html.Div(id='intermediate-value', style={'display': 'none'}),
+    html.Div(id='down_sample_value', style={'display': 'none'}),
 
     html.Button(
         id='submit-button',
@@ -162,6 +167,8 @@ app.layout = html.Div([
         dcc.Graph(id='graph-3')
     ]),
 
+    html.Div(id='practical_sample_value', style={'display': 'none'}),
+
     # Data sample
     html.Br(),
     html.Div([
@@ -172,7 +179,6 @@ app.layout = html.Div([
 
 
 # Functions
-
 # file upload function
 def parse_contents(contents, filename):
     content_type, content_string = contents.split(',')
@@ -219,7 +225,7 @@ def down_sample(data):
 
 
 # callback Storing Data in the Browser with a Hidden Div
-@app.callback(Output('intermediate-value', 'children'),
+@app.callback(Output('down_sample_value', 'children'),
               [Input('upload-data', 'contents'),
                Input('upload-data', 'filename')])
 def clean_data(contents, filename):
@@ -232,7 +238,7 @@ def clean_data(contents, filename):
 
 # callback table creation (down_sampled data)
 @app.callback(Output('table-ds', 'rows'), [Input('submit-button', 'n_clicks')],
-              [State('intermediate-value', 'children')])
+              [State('down_sample_value', 'children')])
 def update_table(n_clicks, jsonified_cleaned_data):
     if jsonified_cleaned_data is not None:
         dff = pd.read_json(jsonified_cleaned_data, orient='split')
@@ -243,7 +249,7 @@ def update_table(n_clicks, jsonified_cleaned_data):
 
 # callback figure creation (down_sampled data explore 1)
 @app.callback(Output('graph-1', 'figure'), [Input('submit-button', 'n_clicks')],
-              [State('intermediate-value', 'children')])
+              [State('down_sample_value', 'children')])
 def update_graph_1(n_clicks, jsonified_cleaned_data):
     if jsonified_cleaned_data is not None:
         dff = pd.read_json(jsonified_cleaned_data, orient='split')
@@ -278,7 +284,7 @@ def update_graph_1(n_clicks, jsonified_cleaned_data):
 
 # callback figure creation (down_sampled data explore2)
 @app.callback(Output('graph-2', 'figure'), [Input('submit-button', 'n_clicks')],
-              [State('intermediate-value', 'children')])
+              [State('down_sample_value', 'children')])
 def update_graph_2(n_clicks, jsonified_cleaned_data):
     if jsonified_cleaned_data is not None:
         dff = pd.read_json(jsonified_cleaned_data, orient='split')
@@ -331,7 +337,7 @@ def update_graph_2(n_clicks, jsonified_cleaned_data):
 
 
 @app.callback(Output('graph-3', 'figure'), [Input('submit-button', 'n_clicks')],
-              [State('intermediate-value', 'children')])
+              [State('down_sample_value', 'children')])
 def update_graph_3(n_clicks, jsonified_cleaned_data):
     if jsonified_cleaned_data is not None:
         dff = pd.read_json(jsonified_cleaned_data, orient='split')
@@ -387,9 +393,39 @@ def update_graph_3(n_clicks, jsonified_cleaned_data):
     # callback figure creation (Sample data)
 
 
-@app.callback(Output('graph-4', 'figure'), [Input('submit-button', 'n_clicks')],
-              [State('intermediate-value', 'children')])
+@app.callback(Output('practical_sample_value', 'children'),
+              [Input('submit-button', 'n_clicks')],
+              [State('down_sample_value', 'children')])
+def sample_table(n_clicks, jsonified_cleaned_data):
+    # callback Storing Data in the Browser with a Hidden Div (sampled data, per 10 units)
+    if jsonified_cleaned_data is not None:
+        dff = pd.read_json(jsonified_cleaned_data, orient='split')
+        dff_1 = dff.copy()
+        pf_obs = [find_obs(dff_1, x) for x in Volume_True]
+        dff_2 = dff.copy()
+        pf_ref = [find_ref(dff_2, x) for x in Volume_True]
+
+        pf_adjust_obs = []
+        for i in np.arange(len(pf_obs)):
+            pf_adjust_obs.append(noise_removal_sample(pf_obs[i], pf_ref[i]))
+
+        volume_adj = [find_volume(x) for x in pf_adjust_obs]
+
+        df = pd.DataFrame({'pf Obs': pf_obs})
+
+        df['pf Adj'] = pf_adjust_obs
+        df['vol Adj'] = volume_adj
+        df['vol Act'] = Volume_True
+        df['pf Act'] = pf_True
+
+        return df.to_json(date_format='iso', orient='split')
+
+
+@app.callback(Output('graph-4', 'figure'),
+              [Input('submit-button', 'n_clicks')],
+              [State('down_sample_value', 'children')])
 def update_graph_4(n_clicks, jsonified_cleaned_data):
+    # Figure for sampled data (10 units each)
     if jsonified_cleaned_data is not None:
         dff = pd.read_json(jsonified_cleaned_data, orient='split')
         dff_1 = dff.copy()
