@@ -174,6 +174,24 @@ app.layout = html.Div([
     ]),
 
     # Kalman filtering
+    html.Div(
+        dcc.Slider(
+            id='my-slider',
+            min=2800,
+            max=3400,
+            step=50,
+            value=3100,
+            marks={
+                2800: {'label': '2800'},
+                2900: {'label': '2900', 'style': {'color': 'rgb(70, 130, 180)'}},
+                3000: {'label': '3000', 'style': {'color': 'rgb(70, 130, 180)'}},
+                3100: {'label': '3100', 'style': {'color': 'rgb(70, 130, 180)'}},
+                3200: {'label': '3200', 'style': {'color': 'rgb(70, 130, 180)'}},
+                3300: {'label': '3300', 'style': {'color': 'rgb(70, 130, 180)'}},
+                3400: {'label': '3400', 'style': {'color': 'rgb(70, 130, 180)'}}
+            }, included=False
+        ), style={'width': '80%', 'padding': '7px'}),
+
     html.Br(),
     html.Div([
         dcc.Graph(id='graph-5')
@@ -483,9 +501,9 @@ def update_graph_4(n_clicks, jsonified_cleaned_data):
         return {'data': []}
 
 
-@app.callback(Output('graph-5', 'figure'), [Input('submit-button', 'n_clicks')],
+@app.callback(Output('graph-5', 'figure'), [Input('submit-button', 'n_clicks'), Input('my-slider', 'value')],
               [State('intermediate-value', 'children')])
-def update_graph_5(n_clicks, jsonified_cleaned_data):
+def update_graph_5(n_clicks, value, jsonified_cleaned_data):
     if jsonified_cleaned_data is not None:
         dff = pd.read_json(jsonified_cleaned_data, orient='split')
         dff_1 = dff.copy()
@@ -499,9 +517,8 @@ def update_graph_5(n_clicks, jsonified_cleaned_data):
         volume_adj = [find_volume(x) for x in pf_adjust_obs]
         volume_obs = [find_volume(x) for x in pf_obs]
 
-
         d = 100.
-        v_init = 3200.
+        v_init = value
         v = gaussian(v_init, 100.)
         sensor_var = 300.
         c = 250.
@@ -571,7 +588,7 @@ def update_graph_5(n_clicks, jsonified_cleaned_data):
         return {
             'data': traces,
             'layout': go.Layout(
-                title='Kalman filtering',
+                title='Kalman filtering (init = {} uL)'.format(value),
                 xaxis=dict(title='Iteration'),
                 yaxis=dict(title='Volume in reservoir (uL)'),
                 legend=dict(orientation="v", xanchor="center", x=0.9, y=1)
