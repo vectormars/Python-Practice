@@ -93,3 +93,9 @@ Heatmaps allow the visualization of 3 features. Categorical or continuous featur
 [Eg. 1](Code/Heatmap_Chart_eg_1.ipynb)           |  [Eg. 2](Code/Heatmap_Chart_eg_2.ipynb)  
 :-------------------------:|:-------------------------:
 <img src="image/Heatmap_Chart_eg_1.png" height="250">   |  <img src="image/Heatmap_Chart_eg_2.png" height="250"> 
+
+## Interactive plot
+[Button](Code/Button_Plotly.ipynb.ipynb)           |  [Slider](Code/Slider_Plotly_02.ipynb)  
+:-------------------------:|:-------------------------:
+<img src="image/Plotly_Button_Eg.png" height="250">   |  <img src="image/Plotly_Slider_Eg.png" height="250"> 
+
